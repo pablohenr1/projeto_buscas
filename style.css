@@ -16,25 +16,27 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
 
 body {
-    /*background-color: var(--bg-color);
-    color: var(--text-dark);*/
     background-image: url(Imagens/Fundo.jpg);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding: 100px 20px;
+    background-size: cover; /* Garante que a imagem cubra tudo */
+    background-position: center;
+    background-attachment: fixed; /* Fundo fixo ao rolar */
 }
 
 /* --- CONTAINER PRINCIPAL (CARD) --- */
 .container {
     background-color: var(--card-bg);
     width: 100%;
-    max-width: 900px; /* Mais largo para caber os blocos */
+    max-width: 900px;
     border-radius: 16px;
     box-shadow: var(--shadow);
     padding: 40px;
     transition: transform 0.3s ease;
+    margin-top: 60px; /* Ajustei um pouco para não ficar tão baixo */
 }
 
 /* --- CABEÇALHO --- */
@@ -58,27 +60,29 @@ h1 {
 /* --- FORMULÁRIO EM GRID (BLOCOS) --- */
 form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto; /* 3 Colunas + Botão */
-    gap: 20px;
-    align-items: end; /* Alinha tudo na base */
+    grid-template-columns: 1fr; 
+    gap: 25px;
     margin-bottom: 30px;
     padding-bottom: 30px;
     border-bottom: 1px solid var(--border-color);
 }
 
-/* Mobile: Vira uma coluna só */
+.form-group {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
     form { grid-template-columns: 1fr; }
 }
 
 /* --- ESTILO DOS INPUTS E LABELS --- */
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
 label {
-    font-size: 12px;
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--text-light);
@@ -98,14 +102,14 @@ select, input[type="text"] {
     width: 100%;
 }
 
-/* Efeito de Foco (Glow) */
+/* Efeito de Foco */
 select:focus, input[type="text"]:focus {
     border-color: var(--primary-color);
     background-color: #fff;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
-/* --- BOTÃO PESQUISAR --- */
+/* --- BOTÕES --- */
 button {
     background-color: var(--primary-color);
     color: white;
@@ -115,7 +119,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
-    height: 46px; /* Mesma altura dos inputs */
+    height: 46px;
 }
 
 button:hover {
@@ -123,9 +127,8 @@ button:hover {
     transform: translateY(-1px);
 }
 
-/* --- BOTÃO EXCEL --- */
 .btn-excel {
-    background-color: #10b981; /* Verde Esmeralda */
+    background-color: #10b981;
     color: white;
     padding: 8px 16px;
     border-radius: 6px;
@@ -171,7 +174,6 @@ button:hover {
     border: 1px solid #fcd34d;
 }
 
-/* Tabela Minimalista */
 .tabela-container {
     overflow-x: auto;
     margin-top: 20px;
@@ -202,7 +204,6 @@ td {
 tr:last-child td { border-bottom: none; }
 tr:hover { background-color: #f3f4f6; }
 
-/* Animação simples */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -210,7 +211,6 @@ tr:hover { background-color: #f3f4f6; }
 
 /* --- ESTILOS DA HOME (LANDING PAGE) --- */
 
-/* Área de destaque (Hero Section) */
 .hero-section {
     text-align: center;
     margin-bottom: 50px;
@@ -224,7 +224,6 @@ tr:hover { background-color: #f3f4f6; }
     font-weight: 800;
     margin-bottom: 15px;
     background: -webkit-linear-gradient(45deg, #ffff, #7bffd3);
-   
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -235,15 +234,13 @@ tr:hover { background-color: #f3f4f6; }
     line-height: 1.6;
 }
 
-/* Grid dos Cartões Conceituais */
 .grid-conceitos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
 }
 
-/* Card Individual */
 .card-conceito {
     background-color: white;
     padding: 30px;
@@ -261,7 +258,6 @@ tr:hover { background-color: #f3f4f6; }
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Cores específicas para cada método */
 .border-blue { border-color: #2563eb; }
 .border-orange { border-color: #f59e0b; }
 .border-purple { border-color: #8b5cf6; }
@@ -279,13 +275,12 @@ tr:hover { background-color: #f3f4f6; }
 .card-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
 .card-text { font-size: 14px; color: var(--text-light); line-height: 1.5; }
 
-/* Botão CTA (Call To Action) Grande */
 .btn-cta {
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: white;
     padding: 18px 50px;
     font-size: 18px;
-    border-radius: 50px; /* Redondo estilo pílula */
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
@@ -297,3 +292,81 @@ tr:hover { background-color: #f3f4f6; }
     transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
 }
+
+/* --- BLOCOS DE SELEÇÃO (CARDS) --- */
+.selecao-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.radio-hidden { display: none; }
+
+.selecao-card {
+    flex: 1;
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+}
+
+.selecao-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #9ca3af;
+    transition: color 0.3s;
+}
+
+.selecao-card span { font-weight: 600; font-size: 14px; }
+
+.selecao-card:hover {
+    border-color: #bfdbfe;
+    background-color: #f9fafb;
+}
+
+.radio-hidden:checked + .selecao-card {
+    border-color: var(--primary-color);
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+}
+
+.radio-hidden:checked + .selecao-card i { color: var(--primary-color); }
+
+#container-colunas {
+    margin-top: 10px;
+    animation: fadeIn 0.4s ease;
+}
+
+/* --- ADIÇÕES FINAIS (RODAPÉ DOS CARDS DA HOME) --- */
+.card-footer {
+    margin-top: auto; /* Empurra para o fundo do card */
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    width: 100%;
+    font-size: 13px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 11px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.b-blue { background: #dbeafe; color: #1e40af; }
+.b-orange { background: #ffedd5; color: #9a3412; }
+.b-purple { background: #f3e8ff; color: #6b21a8; }
