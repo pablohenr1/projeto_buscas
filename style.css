@@ -16,7 +16,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
 
 body {
-    background-image: url(Imagens/Fundo.jpg);
+    background-image: url(Imagens/Fundo\ 2.png);
     display: flex;
     justify-content: center;
     align-items: flex-start;
